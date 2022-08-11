@@ -29,6 +29,7 @@ func CheckImage(r *http.Request) (bool, bool) {
 }
 
 
+
 func CheckSingleImage (r *http.Request) (bool) {
 	r.ParseMultipartForm(10 << 20)
 
@@ -38,22 +39,23 @@ func CheckSingleImage (r *http.Request) (bool) {
 
 	vids := []string{".mp4", ".ogg", ".webm", ".mov", ".rm", ".ram", ".mpeg"}
 
-	for _, k := range vids {
+	if err == nil {
 
-		if strings.HasSuffix(handle.Filename, k) == true {
-			vidcheck = true
+		for _, k := range vids {
+
+			if strings.HasSuffix(handle.Filename, k) == true {
+				vidcheck = true
+			}
 		}
-	}
 
-	if vidcheck == true {
-		fmt.Println("video not supported")
-		return false
-	}else{
-		if err == nil {
-			return true
-		}else{
+		if vidcheck == true {
+			fmt.Println("video not supported")
 			return false
+		}else{
+			return true
 		}
+	}else{
+		return false
 	}
 
 
