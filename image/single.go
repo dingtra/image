@@ -28,7 +28,7 @@ func UploadSingleImage(r *http.Request) string {
 
     defer file.Close()
 
-	tempfile, err := ioutil.TempFile("../jslmnjsyofubfgd/images/profile", "dingtra-*.jpg")
+	tempfile, err := ioutil.TempFile("./jslmnjsyofubfgd/images/profile", "dingtra-*.jpg")
 
     if err != nil {
         fmt.Println(err)
